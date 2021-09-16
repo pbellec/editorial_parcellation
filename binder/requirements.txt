@@ -1,0 +1,4 @@
+numpy==1.18.4
+scipy==1.5.4
+plotly==4.14.0
+nilearn==0.7.1
