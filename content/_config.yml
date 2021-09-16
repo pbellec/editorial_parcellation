@@ -5,8 +5,8 @@
 
 #######################################################################################
 # Book settings
-title                       : "NeuroLibre preprint template"  # The title of the book. Will be placed in the left navbar.
-author                      : Robo Neuro  # The author of the book
+title                       : "Parcellating the parcellation issue"  # The title of the book. Will be placed in the left navbar.
+author                      : R Cameron Cradock, P Bellec, S Jbabdi  # The author of the book
 copyright                   : "2021"  # Copyright year to be placed in the footer
 logo                        : "../images/neurolibre-logo.png"  # A path to the book logo
 exclude_patterns            : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
@@ -39,7 +39,7 @@ launch_buttons:
   thebe                     : false  # Add a thebe button to pages (requires the repository to run on Binder)
 
 repository:
-  url                       : https://github.com/neurolibre/template  # The URL to your book's repository
+  url                       : https://github.com/pbellec/editorial_parcellation  # The URL to your book's repository
   path_to_book              : "content"  # A path to your book's folder, relative to the repository root.
   branch                    : main  # Which branch of the repository should be used when creating links
 
