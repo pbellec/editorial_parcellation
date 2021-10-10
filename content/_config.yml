@@ -6,7 +6,7 @@
 #######################################################################################
 # Book settings
 title                       : "Parcellating the parcellation issue"  # The title of the book. Will be placed in the left navbar.
-author                      : R Cameron Cradock, P Bellec, S Jbabdi  # The author of the book
+author                      : P Bellec, S Jbabdi, R Cameron Cradock   # The author of the book
 copyright                   : "2021"  # Copyright year to be placed in the footer
 logo                        : "../images/neurolibre-logo.png"  # A path to the book logo
 exclude_patterns            : []  # Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
@@ -17,7 +17,7 @@ execute:
   execute_notebooks         : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
   cache                     : ""  # A path to the jupyter cache that will be used to store execution artifacs. Defaults to `_build/.jupyter_cache/`
   exclude_patterns          : []  # A list of patterns to *skip* in execution (e.g. a notebook that takes a really long time)
-  timeout                   : -1  # remove restriction on execution time  
+  timeout                   : -1  # remove restriction on execution time
 #######################################################################################
 # HTML-specific settings
 html:
@@ -43,4 +43,10 @@ repository:
   path_to_book              : "content"  # A path to your book's folder, relative to the repository root.
   branch                    : main  # Which branch of the repository should be used when creating links
 
+#######################################################################################
+# Sphinx settings
+sphinx:
+  config:
+    html_js_files:
+    - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
 #######################################################################################

@@ -46,9 +46,12 @@ kernelspec:
 
 # Introduction
 
-Back in 2017, we were invited as guest editors for the journal "neuroimage", and organized a special issue on the topic of **brain parcellation and segmentation**. When all was said and done, there were 38 papers accepted for publication in that special issue, which provided a snapshot of a vibrant area of neuroimaging research. Parcellation, segmentation, clustering, community detection, etc., are different names for techniques aimed at dividing a collection of examples into subsets with similar statistical properties. Although clustering methods are used to solve seemingly disparate problems in neuroimaging, they all share the common goal of providing a broad understanding of the data, while abstracting away less relevant finer-grained information. So when the time came to write an editorial, we could not resist using a cluster analysis to organize these 38 papers into data-driven categories. You can find the editorial [here](https://doi.org/10.1016/j.neuroimage.2017.11.063) (sadly behind a paywall). This jupyter book shows the short analysis that went into building the categories.
+Back in 2017, we were invited as guest editors for the journal "neuroimage", and organized a special issue on the topic of **brain parcellation and segmentation**. After months of receiving submissions and going through the stages of peer review for all articles, there were 38 papers accepted for publication. We were left with the difficult task of writing a short editorial summarizing concisely this fairly large snapshot of a vibrant area of neuroimaging research. Quickly we realized that we needed to group the papers into more specific categories than the general umbrella of parcellation and segmentation.
 
-This analysis is possible thanks to the following projects:
+
+Parcellation, segmentation (or clustering and community detection) are just different names for generic techniques aimed at finding broad categories in the data, while abstracting away less relevant finer-grained information. So when facing the problem of drawing categories of papers for the editorial, it was only natural to apply a parcellation analysis. In other words, we decided to **parcellate the parcellation (special) issue**. This jupyter book will allow interested readers to reproduce the short analysis that went into building the categories. You can read the final editorial [here](https://doi.org/10.1016/j.neuroimage.2017.11.063) (sadly behind a paywall).
+
+This reproducible analysis is possible thanks to the following projects:
  * The [python](https://www.python.org/) programming language.
  * [Jupyter book](https://jupyterbook.org) is used to generate the html pages, and is itself based on [sphynx](https://www.sphinx-doc.org).
  * The [NeuroLibre](https://neurolibre.org) is hosting this jupyter book.

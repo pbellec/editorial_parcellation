@@ -17,7 +17,7 @@ kernelspec:
 
 ## List of papers
 
-We first assembled the title, the name of the corresponding author, and the abstract for all the articles into a tabular-separated values (tsv) file, which we publicly archived on [Figshare](https://doi.org/10.6084/m9.figshare.5497468.v2). The following URL request is simply retrieving these data and loading them using pandas.
+We first assembled the title, the name of the corresponding author, and the abstract for all the articles into a tabular-separated values (tsv) file, which we publicly archived on [Figshare](https://doi.org/10.6084/m9.figshare.5497468.v2). We use the [Repo2Data](https://github.com/SIMEXP/Repo2Data) tool developped by the NeuroLibre team to collect these data and include them in our reproducible computational environment.
 ```{code-cell} ipython 3
 :tags: ["hide-input"]
 import urllib.request
@@ -32,8 +32,8 @@ pd.set_option("max_rows", 5)
 data
 ```
 
-## Build features
-For each paper, we used [scikit-learn](http://scikit-learn.org) to extract a bag of words representation for each abstract, picking on the 300 most important terms seen across all articles based on a term frequency-inverse document frequency [(tf-idf) index](http://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction). Following that, a special value decomposition was used to further reduce the dimensionality of the abstracts to 10 components. We ended up with a component matrix of dimension 38 (articles) times 10 (abstract text components). The distribution of each component across the 38 articles is represented below.
+## Word features
+For each paper, we used [scikit-learn](http://scikit-learn.org) to extract a bag of words representation for each abstract, picking on the 300 most important terms seen across all articles based on a term frequency-inverse document frequency [(tf-idf) index](http://scikit-learn.org/stable/modules/feature_extraction.html#text-feature-extraction). Following that, a special value decomposition was used to further reduce the dimensionality of the abstracts to 10 components. We ended up with a component matrix of dimension 38 (articles) times 10 (abstract text components). The distribution of each of the 38 articles across the 10 components is represented below. Note how some articles have particular high loadings on specific components, suggesting these may capture particular topics. Rather than visually inspect the component loadings to group paper ourselves, we are going to resort to an automated parcellation (clustering) technique.
 ```{code-cell} ipython 3
 :tags: ["hide-input"]
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -51,20 +51,16 @@ svd = TruncatedSVD(10, algorithm="arpack") # Prepare the SVD model
 normalizer = Normalizer(copy=False) # Normalize the outputs of the svd
 lsa = make_pipeline(svd, normalizer) # Put the SVD and normalization in a pipeline
 X = lsa.fit_transform(X) # Apply the SVD to the TFIDF features
-print("n_samples: %d, n_features: %d" % X.shape)
 
-# Now make a plot
+# Now make a radar plot with all the components
+import plotly.express as px
 import numpy as np
-import seaborn as sns
-sns.set_theme(style="whitegrid")
 df_X = pd.DataFrame(data=np.concatenate([data['Author'].to_numpy().reshape([38, 1]), X], axis=1),
-                    columns= np.concatenate([['Author'],[f'comp{d}' for d in range(10)]]))
-g = sns.PairGrid(df_X,
-                 x_vars=df_X.columns[1:], y_vars=["Author"],
-                 height=10, aspect=.25)
-# Draw a dot plot using the stripplot function
-g.map(sns.stripplot, size=10, orient="h", jitter=False,
-      palette="flare_r", linewidth=1, edgecolor="w")
+                    columns= np.concatenate([['First author'],[f'component {d}' for d in range(10)]]))
+df_visu = pd.melt(df_X, id_vars='First author')
+fig = px.line_polar(df_visu, r='value', theta='variable', color='First author', line_close=True,
+            color_discrete_sequence=px.colors.sequential.Plasma_r)
+fig.show()
 ```
 ## Parcellate the papers
 
@@ -91,7 +87,7 @@ part = pd.DataFrame(data=part[order],columns=["Parcel"],index=order)
 plt.show()
 ```
 
-# Similarity matrix
+## Similarity matrix
 
 So, to get a better feel of the similarity between papers that was fed into the clustering procedure, we extracted the 38x38 (papers x papers) correlation matrix across features. Papers are re-ordered in the matrix according to the above hierarchy. Each "paper parcel" has been indicated by a white square along the diagonal, which represents the similarity measures between papers falling into the same parcel.
 ```{code-cell} ipython 3
@@ -111,6 +107,7 @@ Rs = R.iloc[order,order]
 n = len(order)
 
 # Show the matrix with seaborn
+import seaborn as sns
 sns.heatmap(Rs, square=True )
 
 # I somehow have not been able to find a good tool to do that
@@ -171,10 +168,14 @@ for cc in range(0,n_clusters): # Loop over parcels
 
 # It's word cloud time!
 from wordcloud import WordCloud
+import imageio
+
+n_parcels = int(words["Parcel"].max())+1
+plt.clf()
 word_width = 1000
 word_height = 1000
-fig = plt.figure(figsize=(15, 7), dpi=300)
-for pp in range(0,int(words["Parcel"].max())+1): # Loop over parcels
+fig = plt.figure(figsize=(7, 7), dpi=300)
+for pp in range(0, n_parcels): # Loop over parcels
     dd = {}
     ind = words.loc[words["Parcel"]==pp].index # Select the words in selected parcel
 
@@ -182,19 +183,7 @@ for pp in range(0,int(words["Parcel"].max())+1): # Loop over parcels
     for ii in ind:
         dd[words["word"][ii]] =  (words["weight"][ii] / words["weight"][ind[0]])
 
-    # Create an image with just a number (1, 2, ...)
-    # This will be used to shape the word cloud
-    # We use the package WordCloud itself for this, because it ships with fonts and can generate images...
-    # Again this is a terrible hack
-    img = np.array(
-        WordCloud(
-            background_color="white",
-            max_font_size=1500,
-            height=word_height,
-            width=word_width,
-            stopwords="None"
-        ).generate_from_frequencies({str(pp+1): 1}).to_image()
-    )
+    mask = imageio.imread(f'numbers/{pp + 1}.png')
 
     # Generate the word cloud
     wordcloud = WordCloud(
@@ -202,14 +191,36 @@ for pp in range(0,int(words["Parcel"].max())+1): # Loop over parcels
         random_state=0,
         relative_scaling=0,
         max_font_size=400,
-        height=word_height,
-        width=word_height,
-        mask=img
+        mask=mask[:, :, 3]-1,
+        contour_width=5,
+        contour_color='steelblue'
     ).generate_from_frequencies(dd)
 
     # Show the figure
-    plt.subplot(2, 4, pp+1)
+    plt.subplot(3, 3, pp+1)
     plt.imshow(wordcloud, interpolation="bilinear")
     plt.axis("off")
 plt.show()
+```
+## Categories
+Thanks to the word clouds, these simple data-driven categories turned out to be fairly easily interpretable. For example, the word cloud of the category number 4 features prominently words like "white", "matter" and "bundles". If we examine the exact list of papers included in this category, we see that it is composed of four papers, which all considered parcels derived from white matter bundles with diffusion imaging.
+
+```{code-cell} ipython 3
+:tags: ["hide-input"]
+# ask pandas to display full titles for the papers
+pd.set_option('max_colwidth', 0)
+# zero-indexing beware! parcel number 4 is filled with 3 (!)
+category_4 = part.index[part['Parcel'] == 3]
+tmp = data.iloc[category_4]
+tmp[['Article', 'Author']]
+```
+We can also check the distribution of component loadings for this category alone. As expected, there is a certain similarity in the component loadings for these papers, in particular along `component 4`:
+```{code-cell} ipython 3
+:tags: ["hide-input"]
+import plotly.express as px
+import numpy as np
+df_visu = pd.melt(df_X.iloc[category_4], id_vars='First author')
+fig = px.line_polar(df_visu, r='value', theta='variable', color='First author', line_close=True,
+            color_discrete_sequence=px.colors.sequential.Plasma_r)
+fig.show()
 ```
