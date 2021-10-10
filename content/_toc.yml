@@ -1,3 +1,5 @@
-- file: 00-simple_markdown
-- file: 01-simple_notebook
-- file: 02-simple_myst
+format: jb-book
+root: intro
+chapters:
+- file: papers
+- file: conclusion
