@@ -1,5 +1,5 @@
 ---
-title: 'Parcellating the parcellation issue'
+title: 'Parcellating the parcellation issue - a proof of concept for reproducible analyses using Neurolibre'
 tags:
   - Preprint
   - Jupyter Book
