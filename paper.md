@@ -31,7 +31,7 @@ bibliography: paper.bib
 
 # Summary
 
-Back in 2017, a special issue on the topic of **brain parcellation and segmentation** in the journal Neuroimage. We acted as guest editors for this special issue, and wrote an editorial [@Craddock2018-ou] providing an overview of all papers, sorted into categories. The categories were generated using a parcellation analysis, based on the words contained in the abstract of the articles, and using natural processing techniques. This jupyter book will allow interested readers to reproduce this analysis. We are sharing this analysis mostly as a proof of concept for publishing reproducible analyses using [jupyter books](https://jupyterbook.org/) and the [Neurolibre](https://neurolibre.org) platform.
+Back in 2017, a special issue on the topic of **brain parcellation and segmentation** in the journal Neuroimage. We acted as guest editors for this special issue, and wrote an editorial [@Craddock2018-ou] providing an overview of all papers, sorted into categories. The categories were generated using a parcellation analysis, based on the words contained in the abstract of the articles, and using natural processing techniques. This jupyter book will allow interested readers to reproduce this analysis, as a proof of concept for reproducible publications using [jupyter books](https://jupyterbook.org/) and the [Neurolibre](https://neurolibre.org) preprint server.
 
 # Acknowledgements
 
