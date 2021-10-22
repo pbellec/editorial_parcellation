@@ -1,3 +1,4 @@
-{ "src": "from nilearn import datasets; datasets.fetch_development_fmri(data_dir=_dst, n_subjects=1);",
-  "projectName": "neurolibre_template",
+{ "src": "https://ndownloader.figshare.com/files/9843721",
+  "dst": "../data",
+  "projectName": "editorial_parcellation",
   "recursive": true}

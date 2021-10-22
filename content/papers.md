@@ -19,14 +19,17 @@ kernelspec:
 
 We first assembled the title, the name of the corresponding author, and the abstract for all the articles into a tabular-separated values (tsv) file, which we publicly archived on [Figshare](https://doi.org/10.6084/m9.figshare.5497468.v2). We use the [Repo2Data](https://github.com/SIMEXP/Repo2Data) tool developped by the NeuroLibre team to collect these data and include them in our reproducible computational environment.
 ```{code-cell} ipython 3
+:tags: ["hide-input", "remove-output"]
+# Import data from figshare, using repo2data https://github.com/SIMEXP/Repo2Data
+from repo2data import repo2data
+dl = repo2data.Repo2Data('../binder/data_requirement.json')
+dl.install()
+```
+```{code-cell} ipython 3
 :tags: ["hide-input"]
 import urllib.request
 import pandas as pd
-
-# Download the tsv file from the web
-urllib.request.urlretrieve("https://ndownloader.figshare.com/files/9843721","YNIMG_BrainParcellation_summary.tsv")
-# Read the tsv file with pandas
-data = pd.read_csv('YNIMG_BrainParcellation_summary.tsv', sep='\t',header=0)
+data = pd.read_csv('../data/editorial_parcellation/9843721', sep='\t',header=0)
 # Show us the data!
 pd.set_option("max_rows", 5)
 data
