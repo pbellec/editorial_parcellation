@@ -22,14 +22,15 @@ We first assembled the title, the name of the corresponding author, and the abst
 :tags: ["hide-input", "remove-output"]
 # Import data from figshare, using repo2data https://github.com/SIMEXP/Repo2Data
 from repo2data import repo2data
-dl = repo2data.Repo2Data('../binder/data_requirement.json')
-dl.install()
+dl = repo2data.Repo2Data('data_requirement.json')
+path_data = dl.install()[0]
 ```
 ```{code-cell} ipython 3
 :tags: ["hide-input"]
 import urllib.request
 import pandas as pd
-data = pd.read_csv('../data/editorial_parcellation/9843721', sep='\t',header=0)
+import os
+data = pd.read_csv(os.path.join(path_data, '9843721'), sep='\t',header=0)
 # Show us the data!
 pd.set_option("max_rows", 5)
 data
