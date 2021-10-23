@@ -20,16 +20,24 @@ kernelspec:
 We first assembled the title, the name of the corresponding author, and the abstract for all the articles into a tabular-separated values (tsv) file, which we publicly archived on [Figshare](https://doi.org/10.6084/m9.figshare.5497468.v2). We use the [Repo2Data](https://github.com/SIMEXP/Repo2Data) tool developped by the NeuroLibre team to collect these data and include them in our reproducible computational environment.
 ```{code-cell} ipython 3
 :tags: ["hide-input", "remove-output"]
+# Check where the notebooks are located in the current path
+# This is necessary because thebe does not behave like jupyter hub
+import os
+if os.path.exists('content'):
+  path_content = 'content'
+else:
+  path_content = '.'
+os.chdir(path_content)
+
 # Import data from figshare, using repo2data https://github.com/SIMEXP/Repo2Data
 from repo2data import repo2data
-dl = repo2data.Repo2Data('data_requirement.json')
+dl = repo2data.Repo2Data(os.path.join('..', 'binder', 'data_requirement.json'))
 path_data = dl.install()[0]
 ```
 ```{code-cell} ipython 3
 :tags: ["hide-input"]
 import urllib.request
 import pandas as pd
-import os
 data = pd.read_csv(os.path.join(path_data, '9843721'), sep='\t',header=0)
 # Show us the data!
 pd.set_option("max_rows", 5)
@@ -187,7 +195,7 @@ for pp in range(0, n_parcels): # Loop over parcels
     for ii in ind:
         dd[words["word"][ii]] =  (words["weight"][ii] / words["weight"][ind[0]])
 
-    mask = imageio.imread(f'numbers/{pp + 1}.png')
+    mask = imageio.imread(os.path.join('numbers', f'{pp + 1}.png'))
 
     # Generate the word cloud
     wordcloud = WordCloud(
