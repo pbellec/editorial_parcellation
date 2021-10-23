@@ -24,7 +24,7 @@ A static version of the book will be generated on `methodes_neurocog/_build/html
 ### Hosting the book
 
 The html version of the book is hosted on the `gh-pages` branch of this repo. Navigate to your local build and run,
-- `ghp-import -n -p -f methodes_neurocog/_build/html`
+- `ghp-import -n -p -f content/_build/html`
 
 This will automatically push your build to the `gh-pages` branch. More information on this hosting process can be found [here](https://jupyterbook.org/publish/gh-pages.html#manually-host-your-book-with-github-pages).
 
