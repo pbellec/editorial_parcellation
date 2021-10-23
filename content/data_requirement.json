@@ -1,4 +1,4 @@
 { "src": "https://ndownloader.figshare.com/files/9843721",
-  "dst": "../content/data",
+  "dst": "./data",
   "projectName": "editorial_parcellation",
   "recursive": true}
