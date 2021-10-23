@@ -12,7 +12,7 @@ authors:
   - name: Saâd Jbabdi
     orcid: 0000-0003-3234-5639
     affiliation: "2"
-  - name: Cameron R Craddock
+  - name: R Cameron Craddock
     orcid: 0000-0002-4950-1303
     affiliation: "3"
 affiliations:
