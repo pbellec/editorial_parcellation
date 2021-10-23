@@ -6,3 +6,4 @@ scipy==1.7.1
 scikit-learn==0.24.2
 plotly-express==0.4.1
 imageio==2.9.0
+repo2data==2.4.4
