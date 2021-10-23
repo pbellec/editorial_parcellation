@@ -1,29 +1,33 @@
-## Preprint template
+# Parcellating the parcellation issue
+[![CC BY 4.0][cc-by-shield]][cc-by]
 
-Template repository for NeuroLibre preprint submissions.
+This work is licensed under a
+[Creative Commons Attribution 4.0 International License][cc-by].
 
-### Step 1: Click `Use this template button` and give a name to your new repository
+[![CC BY 4.0][cc-by-image]][cc-by]
 
-### Step 2: Do the following changes in [_config.yml](content/_config.yml)
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-image]: https://i.creativecommons.org/l/by/4.0/88x31.png
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg
 
-```yaml
-title                       : "NeuroLibre preprint template"  # Add your title
-author                      : John Doe, Jane Doe  # Add author names
-```
-```yaml
-repository:
-  url: https://github.com/neurolibre/template  # The URL to your new repository
-```
-> At this stage, you are ready to use [RoboNeuro preview service](https://roboneuro.herokuapp.com/) to get your first book build.
----
-### Step 3: Add your executable content under the `content` directory
+### Build the book on Neurolibre
+This book has been prepared as a submission to the [Neurolibre](https://neurolibre.org) preprint service. The build can be tested with the [roboneuro](https://roboneuro.herokuapp.com/) preview service. 
 
-* ✅ You can add a mixture of `Jupyter Notebooks`, `MyST` formatted markdown and plain text markdown files.
-* ✅ You can organize your content in subfolders.
-* ❌ We don't accept (non-executable) plain text markdown files alone.
+### Build the book locally
+- Clone this repository
+- Run `pip install -r requirements.txt` (recommended in a virtual environment).
+- For a fresh build, remove the content of `content/_build/`
+- Run `jb build content/`
 
-### Step 4: Edit [_toc.yml](content/_toc.yml) according to your new content 
+A static version of the book will be generated on `methodes_neurocog/_build/html/`.
 
-### Step 5: Define your execution environment under the `binder` directory
+### Hosting the book
 
-You can use any [BinderHub configuration files](https://mybinder.readthedocs.io/en/latest/using/config_files.html) that you need.
+The html version of the book is hosted on the `gh-pages` branch of this repo. Navigate to your local build and run,
+- `ghp-import -n -p -f methodes_neurocog/_build/html`
+
+This will automatically push your build to the `gh-pages` branch. More information on this hosting process can be found [here](https://jupyterbook.org/publish/gh-pages.html#manually-host-your-book-with-github-pages).
+
+## Credits
+
+This project is created using the excellent open source [Jupyter Book project](https://jupyterbook.org/) and the [Neurolibre template](https://github.com/neurolibre/template/). Further credits for the book can be found in the book itself.
