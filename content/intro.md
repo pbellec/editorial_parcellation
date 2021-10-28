@@ -28,7 +28,7 @@ kernelspec:
     <td align="center">
       <a href="https://users.fmrib.ox.ac.uk/~saad/">
         <img src="https://users.fmrib.ox.ac.uk/~saad/Saad2013.jpg" width="100px;" alt=""/>
-        <br /><sub><b>Saad Jbabdi</b></sub>
+        <br /><sub><b>Saâd Jbabdi</b></sub>
       </a>
       <br />
         <a title="Révision du texte">👀</a>
@@ -36,7 +36,7 @@ kernelspec:
     <td align="center">
       <a href="https://github.com/ccraddock">
         <img src="https://avatars.githubusercontent.com/u/1725272?v=4?s=100" width="100px;" alt=""/>
-        <br /><sub><b>Cameron Craddock</b></sub>
+        <br /><sub><b>R. Cameron Craddock</b></sub>
       </a>
       <br />
         <a title="Révision du texte">👀</a>

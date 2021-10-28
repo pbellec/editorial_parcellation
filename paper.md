@@ -11,10 +11,10 @@ authors:
     affiliation: "1, 2"
   - name: Saâd Jbabdi
     orcid: 0000-0003-3234-5639
-    affiliation: "2"
-  - name: R Cameron Craddock
-    orcid: 0000-0002-4950-1303
     affiliation: "3"
+  - name: R. Cameron Craddock
+    orcid: 0000-0002-4950-1303
+    affiliation: "4"
 affiliations:
  - name: Université de Montréal, Montréal, Canada
    index: 1
@@ -22,7 +22,7 @@ affiliations:
    index: 2
  - name: University of Oxford, Oxford, UK
    index: 3
- - name: Dell Medical School, The University of Texas at Austin, Austin, USA
+ - name: brainhack.org
    index: 4
 
 date: 22 October 2021
@@ -31,7 +31,7 @@ bibliography: paper.bib
 
 # Summary
 
-Back in 2017, a special issue on the topic of **brain parcellation and segmentation** in the journal Neuroimage. We acted as guest editors for this special issue, and wrote an editorial [@Craddock2018-ou] providing an overview of all papers, sorted into categories. The categories were generated using a parcellation analysis, based on the words contained in the abstract of the articles, and using data-driven techniques. This jupyter book will allow interested readers to reproduce this analysis, as a proof of concept for reproducible publications using [jupyter books](https://jupyterbook.org/) and the [Neurolibre](https://neurolibre.org) preprint server.
+Back in 2017, a special issue on the topic of **brain parcellation and segmentation** was published in the journal Neuroimage. We acted as guest editors for this special issue, and wrote an editorial [@Craddock2018-ou] providing an overview of all papers, sorted into categories. The categories were generated using a data-driven parcellation analysis, based on the words contained in the abstract of the articles. This jupyter book will allow interested readers to reproduce this analysis, as a proof of concept for reproducible publications using [jupyter books](https://jupyterbook.org/) and the [Neurolibre](https://neurolibre.org) preprint server.
 
 # Acknowledgements
 
