@@ -24,10 +24,7 @@ We first assembled the title, the name of the corresponding author, and the abst
 # This is necessary because thebe does not behave like jupyter hub
 import os
 if os.path.exists('content'):
-  path_content = 'content'
-else:
-  path_content = '.'
-os.chdir(path_content)
+  os.chdir('content')
 
 # Import data from figshare, using repo2data https://github.com/SIMEXP/Repo2Data
 from repo2data import repo2data
