@@ -69,7 +69,7 @@ df_X = pd.DataFrame(data=np.concatenate([data['Author'].to_numpy().reshape([38, 
 df_visu = pd.melt(df_X, id_vars='First author')
 fig = px.line_polar(df_visu, r='value', theta='variable', color='First author', line_close=True,
             color_discrete_sequence=px.colors.sequential.Plasma_r)
-fig.showevenworse()
+fig.show()
 ```
 ## Parcellate the papers
 
