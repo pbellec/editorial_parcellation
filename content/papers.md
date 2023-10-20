@@ -37,7 +37,7 @@ import urllib.request
 import pandas as pd
 data = pd.read_csv(os.path.join(path_data, '9843721'), sep='\t',header=0)
 # Show us the data!
-pd.set_option("max_rows", 5)
+pd.options.display.max_rows = 5
 data
 ```
 
@@ -55,7 +55,7 @@ vectorizer = TfidfVectorizer(max_df=0.5, max_features=300,
                                  min_df=2, stop_words='english',
                              use_idf=True)
 X = vectorizer.fit_transform(data.Abstract) # apply the TFIDF model to the abstracts of the papers
-fts = vectorizer.get_feature_names() # Get the most relevant terms selected by the procedure
+fts = vectorizer.get_feature_names_out() # Get the most relevant terms selected by the procedure
 svd = TruncatedSVD(10, algorithm="arpack") # Prepare the SVD model
 normalizer = Normalizer(copy=False) # Normalize the outputs of the svd
 lsa = make_pipeline(svd, normalizer) # Put the SVD and normalization in a pipeline
@@ -172,7 +172,7 @@ for cc in range(0,n_clusters): # Loop over parcels
             nline = pd.DataFrame([[cc,fts[ww],np.round(100*svd.components_[ind_avg[0]][ww])]],
                             columns=["Parcel","word","weight"],
                             index=[nb_words])
-            words = pd.DataFrame.append(words,nline)
+            words = pd.concat([words, nline])
             nb_words = nb_words+1
 
 # It's word cloud time!
