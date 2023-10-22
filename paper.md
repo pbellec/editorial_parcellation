@@ -36,5 +36,3 @@ Back in 2017, a special issue on the topic of **brain parcellation and segmentat
 # Acknowledgements
 
 NeuroLibre is sponsored by the Canadian Open Neuroscience Platform (CONP), Brain Canada, Cancer Computers, the Courtois foundation, the Quebec Bioimaging Network, and Healthy Brains for Healthy Life.
-
-# References
