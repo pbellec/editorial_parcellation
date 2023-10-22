@@ -1,4 +1,4 @@
-jupyter-book
+jupyter-book==0.13.0
 matplotlib
 numpy
 repo2data
